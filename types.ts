@@ -42,6 +42,11 @@ export interface Author extends CosmicObject {
 // Matches the "posts" object type: excerpt (textarea), content (rich-text),
 // featured_image (file/image), tags (multi-select), author (object ->
 // authors), category (object -> categories)
+//
+// published_date is not currently a metafield on the "posts" object type.
+// It is declared optional because sortPostsByDate() reads it opportunistically
+// and falls back to created_at when it is absent. If a published_date field is
+// added in Cosmic later, existing sorting picks it up with no code change.
 export interface PostMetadata {
   excerpt?: string
   content?: string
@@ -49,6 +54,7 @@ export interface PostMetadata {
   tags?: string[] | string
   author?: Author
   category?: Category
+  published_date?: string
 }
 
 export interface Post extends CosmicObject {

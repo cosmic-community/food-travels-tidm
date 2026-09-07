@@ -7,10 +7,18 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        cream: '#FBF7F0',
+        charcoal: '#2B2622',
+        terracotta: '#C55A32',
+        gold: '#C9A227',
+        sage: '#8A9A7B',
+      },
       fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'],
+        sans: ['var(--font-inter)', 'Inter', 'sans-serif'],
+        serif: ['var(--font-playfair)', 'Playfair Display', 'Georgia', 'serif'],
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };

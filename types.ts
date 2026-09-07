@@ -9,13 +9,15 @@ export interface CosmicObject {
   modified_at: string
 }
 
+export interface CosmicFile {
+  url: string
+  imgix_url: string
+}
+
+// Matches the "categories" object type: name (text), description (textarea)
 export interface CategoryMetadata {
+  name?: string
   description?: string
-  color?: string
-  icon?: {
-    url: string
-    imgix_url: string
-  }
 }
 
 export interface Category extends CosmicObject {
@@ -23,16 +25,13 @@ export interface Category extends CosmicObject {
   metadata: CategoryMetadata
 }
 
+// Matches the "authors" object type:
+// name (text), bio (textarea), photo (file/image), location (text)
 export interface AuthorMetadata {
+  name?: string
   bio?: string
-  avatar?: {
-    url: string
-    imgix_url: string
-  }
-  email?: string
-  twitter?: string
-  instagram?: string
-  website?: string
+  photo?: CosmicFile
+  location?: string
 }
 
 export interface Author extends CosmicObject {
@@ -40,19 +39,16 @@ export interface Author extends CosmicObject {
   metadata: AuthorMetadata
 }
 
+// Matches the "posts" object type: excerpt (textarea), content (rich-text),
+// featured_image (file/image), tags (multi-select), author (object ->
+// authors), category (object -> categories)
 export interface PostMetadata {
-  content?: string
-  summary?: string
   excerpt?: string
-  featured_image?: {
-    url: string
-    imgix_url: string
-  }
+  content?: string
+  featured_image?: CosmicFile
+  tags?: string[] | string
   author?: Author
   category?: Category
-  tags?: string[] | string
-  published_date?: string
-  status?: string
 }
 
 export interface Post extends CosmicObject {
